@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block title %}{{ code }} | Pawfect{% endblock %}{% block content %}<section class="empty-state error-state"><span>♡</span><h1>{{ code }}</h1><h3>{{ message }}</h3><a class="button" href="{{ url_for('home') }}">Back to homepage</a></section>{% endblock %}

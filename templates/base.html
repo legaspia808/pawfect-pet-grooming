@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Pawfect Pet Grooming{% endblock %}</title>
+  <meta name="description" content="Gentle pet grooming and easy online reservations at Pawfect Pet Grooming.">
+  <meta name="theme-color" content="#fff0f4">
+  <link rel="canonical" href="{{ request.base_url }}">
+  <meta property="og:title" content="Pawfect Pet Grooming">
+  <meta property="og:description" content="Gentle pet grooming and easy online reservations.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="{{ url_for('home') }}"><span class="brand-mark">♡</span><span>Pawfect<small>PET GROOMING</small></span></a>
+<nav><a href="{{ url_for('home') }}#services">Services</a><a href="{{ url_for('home') }}#reviews">Reviews</a>
+{% if current_user() %}{% if current_user().role == 'admin' %}<a href="{{ url_for('admin_dashboard') }}">Admin</a>{% else %}<a href="{{ url_for('dashboard') }}">My account</a>{% endif %}<a class="nav-button" href="{{ url_for('logout') }}">Log out</a>
+{% else %}<a href="{{ url_for('login') }}">Log in</a><a class="nav-button" href="{{ url_for('register') }}">Book a Groom</a>{% endif %}</nav></header>
+<main><div class="flash-wrap">{% with messages = get_flashed_messages(with_categories=true) %}{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endwith %}</div>{% block content %}{% endblock %}</main>
+<footer><div><a class="footer-brand" href="{{ url_for('home') }}">♡ Pawfect</a><p>Gentle care, happy tails, and a little extra love.</p></div><div><b>Studio hours</b><p>Tuesday–Sunday · 9 AM–6 PM</p></div><div><b>Say hello</b><p>hello@pawfect.example<br>Metro Manila</p></div><small class="copyright">© 2026 Pawfect Pet Grooming · Fictional school-project business</small></footer>
+</body></html>
